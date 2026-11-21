@@ -30,5 +30,7 @@ searched without a server or external libraries.
 
 The initial view is a compact, searchable recipe list. Search can cover all text
 or ingredients only. Select one recipe to open it, then return to the list to
-choose another. New plaintext recipes can still be added by dropping them onto
-the page or using `Alt+Shift+U`; upload controls are hidden from the page.
+choose another. Formatted recipes include a “Show original text” disclosure for
+checking the exact embedded text. New plaintext recipes can still be added by
+dropping them onto the page or using `Alt+Shift+U`; upload controls are hidden
+from the page.

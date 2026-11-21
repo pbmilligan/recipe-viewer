@@ -43,17 +43,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
+      padding: 8px 0;
       border-bottom: 1px solid rgb(53 91 73 / 13%);
     }
 
     .brand { display: flex; align-items: center; gap: 11px; font-size: .78rem; font-weight: 800; letter-spacing: .16em; }
-    .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; color: white; background: var(--green); border-radius: 50% 50% 50% 8px; font-size: .9rem; }
+    .brand-mark { display: grid; width: 26px; height: 26px; place-items: center; color: white; background: var(--green); border-radius: 50% 50% 50% 7px; font-size: .8rem; }
     .top-note { color: var(--muted); font-size: .82rem; }
 
-    .intro { max-width: 820px; padding: 25px 0 20px; }
-    .eyebrow { margin: 0 0 7px; color: var(--green); font-size: .66rem; font-weight: 800; letter-spacing: .19em; text-transform: uppercase; }
-    h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.2rem, 5vw, 3.65rem); font-weight: 500; letter-spacing: -.055em; line-height: 1.02; }
+    .intro { max-width: 820px; padding: 13px 0 12px; }
+    .eyebrow { margin: 0 0 3px; color: var(--green); font-size: .6rem; font-weight: 800; letter-spacing: .19em; text-transform: uppercase; }
+    h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.9rem, 3.4vw, 2.65rem); font-weight: 500; letter-spacing: -.055em; line-height: 1; }
     .intro-copy { max-width: 650px; margin: 9px 0 0; color: var(--muted); font-size: .94rem; }
 
     .upload-panel {
@@ -113,6 +113,10 @@
     .selected-caption { color: var(--muted); font-size: .8rem; }
     .recipe-view { padding-bottom: 60px; }
     .recipe-view[hidden], .recipe-index[hidden], .selection-bar[hidden] { display: none; }
+    .original-disclosure { margin: 12px 0 28px; overflow: hidden; border: 1px solid rgb(53 91 73 / 14%); border-radius: 13px; background: rgb(255 253 248 / 78%); }
+    .original-disclosure summary { padding: 12px 15px; color: var(--green); cursor: pointer; font-size: .85rem; font-weight: 750; }
+    .original-disclosure summary::marker { color: var(--citrus); }
+    .original-text { max-height: 65vh; overflow: auto; margin: 0; padding: 15px; border-top: 1px solid var(--line); color: #46544b; background: #fbfaf5; font: .84rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
     .upload-input { display: none; }
 
     .recipe-overview { margin: 0 0 15px; padding: 14px 17px; border: 1px solid rgb(53 91 73 / 13%); border-radius: 15px; background: rgb(255 253 248 / 82%); }
@@ -166,10 +170,10 @@
 
     @media (max-width: 720px) {
       .shell { width: min(100% - 28px, 620px); }
-      .topbar { padding: 10px 0; }
+      .topbar { padding: 7px 0; }
       .top-note { max-width: 135px; text-align: right; }
-      .intro { padding: 22px 0 17px; }
-      h1 { font-size: clamp(2rem, 8vw, 3rem); }
+      .intro { padding: 12px 0 10px; }
+      h1 { font-size: clamp(1.8rem, 7vw, 2.35rem); }
       .upload-panel { align-items: center; gap: 12px; padding: 12px 14px; }
       .upload-icon { flex-basis: 40px; width: 40px; height: 40px; border-radius: 12px; }
       .choose-button { align-self: center; padding: 9px 12px; }
@@ -1395,6 +1399,13 @@
         return card;
       }
 
+      function renderOriginalText(recipe) {
+        const disclosure = element("details", "original-disclosure");
+        disclosure.append(element("summary", "", "Show original text"));
+        disclosure.append(element("pre", "original-text", recipe.text));
+        return disclosure;
+      }
+
       function renderSelected() {
         recipeIndex.hidden = selectedRecipeId !== null;
         selectionBar.hidden = selectedRecipeId === null;
@@ -1413,6 +1424,7 @@
         const parsed = parseRecipe(recipe.text, recipe.title);
         if (parsed.formatted) {
           recipeView.append(renderCard(recipe, parsed));
+          recipeView.append(renderOriginalText(recipe));
         } else {
           const card = element("article", "recipe-card plain-recipe");
           card.append(element("p", "recipe-kicker", recipe.category || "Original text"));
