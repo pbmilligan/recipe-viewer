@@ -28,6 +28,11 @@ from this repository's `recipes/` folder inside the page itself. The embedded
 recipes use the `INGREDIENTS`, `METHOD`, `NOTES`, and `SOURCE` labels, and can be
 searched without a server or external libraries.
 
+Compare alternate colour schemes in `theme-options.html`. Selecting a palette
+marks it for review. The current Recipe Folio style is Plum & Cream · Modern
+Pantry: plum accents, crisp system sans-serif typography, and stronger colour
+blocks.
+
 The initial view is a compact, searchable recipe list. Search can cover all text
 or ingredients only. Select one recipe to open it, then return to the list to
 choose another. Formatted recipes include a “Show original text” disclosure for

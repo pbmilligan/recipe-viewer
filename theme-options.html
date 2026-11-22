@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e8">
+  <title>Recipe Folio — Style directions</title>
+  <style>
+    :root { --page:#f5f0e8; --ink:#302d30; --muted:#777277; --line:#dfdbd5; --focus:#9b6b83; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--page); font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .shell { width:min(1120px,calc(100% - 36px)); margin:auto; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; padding:13px 0; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:9px; font-size:.7rem; font-weight:850; letter-spacing:.15em; }
+    .brand-mark { display:grid; width:26px; height:26px; place-items:center; border-radius:50% 50% 50% 6px; color:white; background:#64475f; }
+    .back-link { color:#655d63; font-size:.81rem; text-decoration-thickness:1px; text-underline-offset:3px; }
+    .intro { display:flex; align-items:end; justify-content:space-between; gap:24px; padding:27px 0 13px; }
+    .eyebrow { margin:0 0 5px; color:#79576e; font-size:.62rem; font-weight:850; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2rem,4vw,3rem); font-weight:500; letter-spacing:-.045em; line-height:1; }
+    .intro-copy { max-width:390px; margin:0 0 2px; color:var(--muted); font-size:.88rem; line-height:1.5; }
+    .selection-message { min-height:24px; margin:0 0 14px; color:#65475f; font-size:.81rem; font-weight:700; }
+    .palette-group { margin:0 0 26px; }
+    .group-heading { display:flex; align-items:baseline; gap:10px; margin:0 0 11px; }
+    .rank { color:#8a747f; font:700 .65rem ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; }
+    .group-title { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:1.32rem; font-weight:600; }
+    .group-note { color:var(--muted); font-size:.76rem; }
+    .variants { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+    .variant {
+      --surface:#fffafd; --ink:#392c3b; --muted:#817185; --line:#eadce9; --accent:#60455f; --accent-ink:#fffaff; --soft:#f1e7f0; --spark:#c27b69;
+      --display:Georgia,"Times New Roman",serif; --body:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      overflow:hidden; border:2px solid transparent; border-radius:15px; color:var(--ink); background:var(--surface); box-shadow:0 7px 22px rgb(50 45 48 / 7%); transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+    }
+    .variant.selected { border-color:var(--spark); box-shadow:0 0 0 3px color-mix(in srgb,var(--spark) 20%,transparent),0 10px 25px rgb(50 45 48 / 10%); transform:translateY(-2px); }
+    .variant.plum { --surface:#fffafd; --ink:#392c3b; --muted:#817185; --line:#eadce9; --accent:#60455f; --accent-ink:#fffaff; --soft:#f1e7f0; --spark:#c27b69; }
+    .variant.tomato { --surface:#fffaf5; --ink:#382c28; --muted:#88736b; --line:#ecdcd2; --accent:#9f4936; --accent-ink:#fff8f0; --soft:#f7e8dc; --spark:#d29148; }
+    .variant.blue { --surface:#f9fcfd; --ink:#263744; --muted:#6c7f89; --line:#d8e4e8; --accent:#31576b; --accent-ink:#f7fcff; --soft:#e4eff2; --spark:#dc9d50; }
+    .variant.plum.bookish { --display:"Palatino Linotype",Palatino,Georgia,serif; --body:"Palatino Linotype",Palatino,Georgia,serif; }
+    .variant.plum.modern { --display:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --body:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .variant.tomato.hearth { --display:Georgia,"Times New Roman",serif; --body:Georgia,"Times New Roman",serif; }
+    .variant.tomato.market { --display:"Trebuchet MS",Arial,sans-serif; --body:Arial,Helvetica,sans-serif; }
+    .variant.blue.coastal { --display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; --body:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .variant.blue.studio { --display:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --body:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .variant-head { display:flex; align-items:start; justify-content:space-between; gap:12px; padding:13px 15px 10px; }
+    .variant-name { margin:0; color:var(--ink); font-family:var(--display); font-size:1.07rem; font-weight:650; }
+    .variant-description { margin:3px 0 0; color:var(--muted); font-size:.74rem; }
+    .swatches { display:flex; gap:4px; padding-top:3px; }
+    .swatch { width:13px; height:13px; border:1px solid rgb(0 0 0 / 12%); border-radius:50%; }
+    .preview { margin:0 11px; overflow:hidden; border:1px solid var(--line); border-radius:10px; color:var(--ink); background:var(--surface); font-family:var(--body); }
+    .preview-header { padding:13px 15px 12px; color:var(--accent-ink); background:var(--accent); }
+    .bookish .preview-header, .hearth .preview-header, .coastal .preview-header { border-bottom:3px solid var(--spark); }
+    .modern .preview-header { border-left:5px solid var(--spark); }
+    .market .preview-header { border-bottom:5px solid var(--spark); }
+    .studio .preview-header { background:linear-gradient(120deg,var(--accent),color-mix(in srgb,var(--accent) 76%,#7899aa)); }
+    .preview-kicker { margin:0 0 4px; opacity:.78; font:800 .53rem system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+    .preview-title { margin:0; font-family:var(--display); font-size:clamp(1.28rem,2.5vw,1.7rem); font-weight:550; letter-spacing:-.035em; line-height:1.08; }
+    .modern .preview-title, .market .preview-title, .studio .preview-title { font-weight:700; letter-spacing:-.045em; }
+    .chips { display:flex; gap:5px; margin-top:9px; }
+    .chip { padding:3px 7px; border:1px solid color-mix(in srgb,var(--accent-ink) 28%,transparent); border-radius:999px; color:var(--accent-ink); font: .62rem system-ui,sans-serif; }
+    .preview-body { display:grid; grid-template-columns:.82fr 1.18fr; }
+    .ingredients,.method { padding:12px 14px 13px; }
+    .ingredients { border-right:1px solid var(--line); background:color-mix(in srgb,var(--soft) 28%,var(--surface)); }
+    .modern .ingredients,.market .ingredients,.studio .ingredients { background:var(--surface); }
+    .preview-label { display:flex; align-items:center; gap:6px; margin:0 0 8px; color:var(--accent); font:900 .55rem system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; }
+    .preview-label::after { width:15px; height:1px; background:var(--line); content:""; }
+    .ingredient { display:flex; gap:7px; margin:5px 0; color:var(--ink); font: .66rem/1.35 var(--body); }
+    .ingredient::before { width:5px; height:5px; flex:0 0 5px; margin-top:4px; border-radius:50%; background:var(--spark); content:""; }
+    .step { display:grid; grid-template-columns:17px 1fr; gap:7px; margin:5px 0; color:var(--ink); font:.66rem/1.4 var(--body); }
+    .step-number { display:grid; width:16px; height:16px; place-items:center; border-radius:50%; color:var(--accent); background:var(--soft); font:800 .57rem system-ui,sans-serif; }
+    .bookish .step-number,.hearth .step-number,.coastal .step-number { border-radius:3px; }
+    .variant-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 15px 13px; }
+    .palette-code { color:var(--muted); font: .63rem ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .select-button { padding:7px 12px; border:1px solid var(--accent); border-radius:999px; color:var(--accent-ink); background:var(--accent); cursor:pointer; font:.73rem system-ui,sans-serif; font-weight:750; }
+    .select-button:hover { filter:brightness(1.08); }
+    .select-button[aria-pressed="true"] { color:var(--accent); background:var(--soft); }
+    button:focus-visible,a:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    @media(max-width:700px) { .intro { display:block; padding-top:23px; } .intro-copy { margin-top:9px; } .variants { grid-template-columns:1fr; gap:12px; } .preview-title { font-size:1.55rem; } }
+    @media(max-width:430px) { .shell { width:calc(100% - 24px); } .topbar { padding:10px 0; } .variant-head { padding-inline:12px; } .preview { margin-inline:7px; } .ingredients,.method { padding:10px 8px 11px; } .variant-footer { padding-inline:12px; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span>RECIPE FOLIO · STYLE STUDY</span></div>
+    <a class="back-link" href="./index.html">Back to recipe collection</a>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">Your palette shortlist</p><h1 id="page-title">Choose the page’s personality.</h1></div>
+      <p class="intro-copy">Your colour ranking leads each group. Compare two font and layout treatments for every palette. All fonts are built into the system.</p>
+    </section>
+    <p class="selection-message" id="selection-message" role="status" aria-live="polite">Currently applied: Plum &amp; Cream · Modern Pantry.</p>
+
+    <section class="palette-group" aria-labelledby="plum-heading">
+      <h2 class="group-heading" id="plum-heading"><span class="rank">01</span><span class="group-title">Plum &amp; Cream</span><span class="group-note">your first choice</span></h2>
+      <div class="variants">
+        <article class="variant plum bookish" data-name="Plum & Cream · Bookish">
+          <div class="variant-head"><div><h3 class="variant-name">Bookish</h3><p class="variant-description">Literary serif throughout, soft lines, generous air</p></div><div class="swatches"><i class="swatch" style="background:#fffafd"></i><i class="swatch" style="background:#60455f"></i><i class="swatch" style="background:#c27b69"></i></div></div>
+          <div class="preview"><header class="preview-header"><p class="preview-kicker">Weeknight favourite</p><h4 class="preview-title">Lemon herb couscous</h4><div class="chips"><span class="chip">Serves 4</span><span class="chip">25 minutes</span></div></header><div class="preview-body"><div class="ingredients"><h5 class="preview-label">Ingredients</h5><p class="ingredient">225g couscous</p><p class="ingredient">1 lemon, zest and juice</p><p class="ingredient">Fresh parsley</p></div><div class="method"><h5 class="preview-label">Method</h5><p class="step"><span class="step-number">1</span><span>Pour over hot stock and cover for 5 minutes.</span></p><p class="step"><span class="step-number">2</span><span>Fluff with herbs and lemon, then season.</span></p></div></div></div>
+          <div class="variant-footer"><code class="palette-code">Palatino · plum · rose</code><button class="select-button" type="button" aria-pressed="false">Select style</button></div>
+        </article>
+        <article class="variant plum modern selected" data-name="Plum & Cream · Modern Pantry">
+          <div class="variant-head"><div><h3 class="variant-name">Modern Pantry</h3><p class="variant-description">Clean sans-serif, crisp labels, stronger colour blocks</p></div><div class="swatches"><i class="swatch" style="background:#fffafd"></i><i class="swatch" style="background:#60455f"></i><i class="swatch" style="background:#c27b69"></i></div></div>
+          <div class="preview"><header class="preview-header"><p class="preview-kicker">Weeknight favourite</p><h4 class="preview-title">Lemon herb couscous</h4><div class="chips"><span class="chip">Serves 4</span><span class="chip">25 minutes</span></div></header><div class="preview-body"><div class="ingredients"><h5 class="preview-label">Ingredients</h5><p class="ingredient">225g couscous</p><p class="ingredient">1 lemon, zest and juice</p><p class="ingredient">Fresh parsley</p></div><div class="method"><h5 class="preview-label">Method</h5><p class="step"><span class="step-number">1</span><span>Pour over hot stock and cover for 5 minutes.</span></p><p class="step"><span class="step-number">2</span><span>Fluff with herbs and lemon, then season.</span></p></div></div></div>
+          <div class="variant-footer"><code class="palette-code">System sans · plum · rose</code><button class="select-button" type="button" aria-pressed="true">Selected</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="palette-group" aria-labelledby="tomato-heading">
+      <h2 class="group-heading" id="tomato-heading"><span class="rank">02</span><span class="group-title">Tomato &amp; Linen</span><span class="group-note">your second choice</span></h2>
+      <div class="variants">
+        <article class="variant tomato hearth" data-name="Tomato & Linen · Hearthside">
+          <div class="variant-head"><div><h3 class="variant-name">Hearthside</h3><p class="variant-description">Classic cookbook serif, warm paper, a market-red header</p></div><div class="swatches"><i class="swatch" style="background:#fffaf5"></i><i class="swatch" style="background:#9f4936"></i><i class="swatch" style="background:#d29148"></i></div></div>
+          <div class="preview"><header class="preview-header"><p class="preview-kicker">Weeknight favourite</p><h4 class="preview-title">Lemon herb couscous</h4><div class="chips"><span class="chip">Serves 4</span><span class="chip">25 minutes</span></div></header><div class="preview-body"><div class="ingredients"><h5 class="preview-label">Ingredients</h5><p class="ingredient">225g couscous</p><p class="ingredient">1 lemon, zest and juice</p><p class="ingredient">Fresh parsley</p></div><div class="method"><h5 class="preview-label">Method</h5><p class="step"><span class="step-number">1</span><span>Pour over hot stock and cover for 5 minutes.</span></p><p class="step"><span class="step-number">2</span><span>Fluff with herbs and lemon, then season.</span></p></div></div></div>
+          <div class="variant-footer"><code class="palette-code">Georgia · tomato · linen</code><button class="select-button" type="button" aria-pressed="false">Select style</button></div>
+        </article>
+        <article class="variant tomato market" data-name="Tomato & Linen · Market Modern">
+          <div class="variant-head"><div><h3 class="variant-name">Market Modern</h3><p class="variant-description">Bold sans-serif, compact structure, brighter tomato accents</p></div><div class="swatches"><i class="swatch" style="background:#fffaf5"></i><i class="swatch" style="background:#9f4936"></i><i class="swatch" style="background:#d29148"></i></div></div>
+          <div class="preview"><header class="preview-header"><p class="preview-kicker">Weeknight favourite</p><h4 class="preview-title">Lemon herb couscous</h4><div class="chips"><span class="chip">Serves 4</span><span class="chip">25 minutes</span></div></header><div class="preview-body"><div class="ingredients"><h5 class="preview-label">Ingredients</h5><p class="ingredient">225g couscous</p><p class="ingredient">1 lemon, zest and juice</p><p class="ingredient">Fresh parsley</p></div><div class="method"><h5 class="preview-label">Method</h5><p class="step"><span class="step-number">1</span><span>Pour over hot stock and cover for 5 minutes.</span></p><p class="step"><span class="step-number">2</span><span>Fluff with herbs and lemon, then season.</span></p></div></div></div>
+          <div class="variant-footer"><code class="palette-code">Trebuchet · tomato · linen</code><button class="select-button" type="button" aria-pressed="false">Select style</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="palette-group" aria-labelledby="blue-heading">
+      <h2 class="group-heading" id="blue-heading"><span class="rank">03</span><span class="group-title">Blue Note</span><span class="group-note">your third choice</span></h2>
+      <div class="variants">
+        <article class="variant blue coastal" data-name="Blue Note · Coastal Journal">
+          <div class="variant-head"><div><h3 class="variant-name">Coastal Journal</h3><p class="variant-description">Airy, book-like title with calm blue-green details</p></div><div class="swatches"><i class="swatch" style="background:#f9fcfd"></i><i class="swatch" style="background:#31576b"></i><i class="swatch" style="background:#dc9d50"></i></div></div>
+          <div class="preview"><header class="preview-header"><p class="preview-kicker">Weeknight favourite</p><h4 class="preview-title">Lemon herb couscous</h4><div class="chips"><span class="chip">Serves 4</span><span class="chip">25 minutes</span></div></header><div class="preview-body"><div class="ingredients"><h5 class="preview-label">Ingredients</h5><p class="ingredient">225g couscous</p><p class="ingredient">1 lemon, zest and juice</p><p class="ingredient">Fresh parsley</p></div><div class="method"><h5 class="preview-label">Method</h5><p class="step"><span class="step-number">1</span><span>Pour over hot stock and cover for 5 minutes.</span></p><p class="step"><span class="step-number">2</span><span>Fluff with herbs and lemon, then season.</span></p></div></div></div>
+          <div class="variant-footer"><code class="palette-code">Iowan-style serif · slate · sky</code><button class="select-button" type="button" aria-pressed="false">Select style</button></div>
+        </article>
+        <article class="variant blue studio" data-name="Blue Note · Fresh Studio">
+          <div class="variant-head"><div><h3 class="variant-name">Fresh Studio</h3><p class="variant-description">Geometric sans-serif, sharp alignment, bright clean surfaces</p></div><div class="swatches"><i class="swatch" style="background:#f9fcfd"></i><i class="swatch" style="background:#31576b"></i><i class="swatch" style="background:#dc9d50"></i></div></div>
+          <div class="preview"><header class="preview-header"><p class="preview-kicker">Weeknight favourite</p><h4 class="preview-title">Lemon herb couscous</h4><div class="chips"><span class="chip">Serves 4</span><span class="chip">25 minutes</span></div></header><div class="preview-body"><div class="ingredients"><h5 class="preview-label">Ingredients</h5><p class="ingredient">225g couscous</p><p class="ingredient">1 lemon, zest and juice</p><p class="ingredient">Fresh parsley</p></div><div class="method"><h5 class="preview-label">Method</h5><p class="step"><span class="step-number">1</span><span>Pour over hot stock and cover for 5 minutes.</span></p><p class="step"><span class="step-number">2</span><span>Fluff with herbs and lemon, then season.</span></p></div></div></div>
+          <div class="variant-footer"><code class="palette-code">System sans · deep blue · sky</code><button class="select-button" type="button" aria-pressed="false">Select style</button></div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+    (() => {
+      const variants = Array.from(document.querySelectorAll(".variant"));
+      const message = document.getElementById("selection-message");
+      for (const variant of variants) {
+        const button = variant.querySelector(".select-button");
+        button.addEventListener("click", () => {
+          for (const candidate of variants) {
+            const selected = candidate === variant;
+            candidate.classList.toggle("selected", selected);
+            candidate.querySelector(".select-button").setAttribute("aria-pressed", String(selected));
+            candidate.querySelector(".select-button").textContent = selected ? "Selected" : "Select style";
+          }
+          message.textContent = `${variant.dataset.name} selected. Tell Codex this style name to apply it to your recipe page.`;
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
